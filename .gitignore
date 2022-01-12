@@ -4,6 +4,15 @@
 *.dll
 *.so
 *.dylib
+*.lnx
+*.osx
+*.rpi
+
+# Actual config file
+ddns.yaml
+ddns.yml
+config.yaml
+config.yml
 
 # Test binary, built with `go test -c`
 *.test
@@ -13,3 +22,9 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+
+# Test files
+foo*
+*.pub
+*.msgpack

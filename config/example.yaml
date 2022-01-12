@@ -1,0 +1,8 @@
+cert_file_path: "ddns.crt"
+key_file_path: "ddns.key"
+remote_host: "127.0.0.1"
+port: 3456
+ping_interval: 0h0m10s
+private_key_path: "foo"
+public_key_path: "foo.pub"
+domain: "foo.bruh.com"
