@@ -10,6 +10,8 @@ import (
 )
 
 type Config struct {
+	Username       string        `yaml:"username"`
+	Password       string        `yaml:"password"`
 	CertFilePath   string        `yaml:"cert_file_path"`
 	KeyFilePath    string        `yaml:"key_file_path"`
 	RemoteHost     string        `yaml:"remote_host"`

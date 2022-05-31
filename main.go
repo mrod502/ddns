@@ -32,6 +32,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	if *srv {
 		r = server.New(cfg)
 	} else {
