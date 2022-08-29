@@ -3,31 +3,28 @@ package client
 import (
 	"bytes"
 	"crypto/rsa"
+	"crypto/tls"
 	"encoding/base64"
 	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/mrod502/ddns/config"
+	"github.com/mrod502/ddns/interfaces"
+	"github.com/mrod502/ddns/logger"
 	"github.com/mrod502/ddns/util"
-	"github.com/mrod502/logger"
 )
 
 type Client struct {
 	cfg    config.Config
 	pubKey *rsa.PublicKey
-	log    logger.Client
+	log    interfaces.Logger
 }
 
 func (c *Client) Start() error {
-	pub, err := util.LoadPubKey(c.cfg.PublicKeyPath)
-	if err != nil {
-		return err
-	}
-	c.pubKey = pub
-
+	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	for {
-		err = c.Ping()
+		err := c.Ping()
 		if err != nil {
 			c.log.Write(err.Error())
 		}
@@ -41,24 +38,20 @@ func (c *Client) Ping() error {
 	if err != nil {
 		return err
 	}
-
 	_, err = http.DefaultClient.Do(req)
 	return err
 }
 
 func New(cfg config.Config) *Client {
-	cli, err := logger.NewClient(cfg.ClientConfig)
+	pub, err := util.LoadPubKey(cfg.PublicKeyPath)
+	if err != nil {
+		panic(err)
+	}
 
-	if err != nil {
-		panic(err)
-	}
-	err = cli.Connect()
-	if err != nil {
-		panic(err)
-	}
 	return &Client{
-		cfg: cfg,
-		log: cli,
+		cfg:    cfg,
+		pubKey: pub,
+		log:    logger.New(),
 	}
 }
 

@@ -18,6 +18,7 @@ type RequestBody struct {
 	Timestamp time.Time
 	Domain    string
 	APIKey    []byte
+	Data      []byte
 }
 
 func (r RequestBody) Encode(pub *rsa.PublicKey) (data, nonce []byte, err error) {

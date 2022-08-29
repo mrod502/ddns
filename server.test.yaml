@@ -1,0 +1,6 @@
+cert_file_path: cert.pem
+key_file_path: key.pem
+port: 3391
+public_key_path: util/foo
+api_key: LemmeIn
+ping_interval: 1 second

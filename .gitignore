@@ -7,6 +7,8 @@
 *.lnx
 *.osx
 *.rpi
+*.pi
+ddns
 
 # Actual config file
 ddns.yaml
@@ -23,6 +25,10 @@ config.yml
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
+# keys
+*.pem
+*.key
+*.crt
 
 # Test files
 foo*

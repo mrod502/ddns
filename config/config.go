@@ -5,7 +5,6 @@ import (
 	"os"
 	"time"
 
-	"github.com/mrod502/logger"
 	yaml "gopkg.in/yaml.v3"
 )
 
@@ -18,7 +17,7 @@ type Config struct {
 	PrivateKeyPath string        `yaml:"private_key_path"`
 	PublicKeyPath  string        `yaml:"public_key_path"`
 	Domain         string        `yaml:"domain"`
-	logger.ClientConfig
+	APIKey         string        `yaml:"api_key"`
 }
 
 func Parse(path string) (Config, error) {
