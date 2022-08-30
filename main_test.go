@@ -39,7 +39,7 @@ func TestMain(t *testing.T) {
 			t.Fatal(err)
 		}
 	}()
-	time.Sleep(time.Minute * 100)
+	time.Sleep(time.Second * 3)
 	err := cli.Ping()
 	if err != nil {
 		t.Fatal(err)
